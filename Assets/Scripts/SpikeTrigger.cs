@@ -7,12 +7,19 @@ public class SpikeTrigger : MonoBehaviour
 	[SerializeField] private GameObject spikePrefab;
 	private GameObject spikeInstance;
 
+	private Vector3 spikeSpawnPosition;
+	private bool activated;
+
+	private void Awake()
+	{
+		activated = false;
+	}
+
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		Vector3 instantiationPosition = new Vector3(transform.position.x,
-			transform.position.y + .8f,
-			transform.position.z);
-		spikeInstance = Instantiate(spikePrefab, instantiationPosition, Quaternion.identity);
+		spikeInstance = Instantiate(spikePrefab, spikeSpawnPosition, Quaternion.identity);
+
+		activated = true;
 	}
 
 	private void OnTriggerExit2D(Collider2D other)
@@ -21,7 +28,22 @@ public class SpikeTrigger : MonoBehaviour
 
 		animator.SetBool("LeftArea", true);
 
-		Destroy(spikeInstance, .25f);
+		Destroy(spikeInstance, .15f);
 
+	}
+
+	public void SetSpikeSpawnPosition(Vector3 spawnPosition)
+	{
+		spikeSpawnPosition = spawnPosition;
+	}
+
+	public Vector3 GetSpikeSpawnPosition()
+	{
+		return spikeSpawnPosition;
+	}
+
+	public bool getActivatedFlag()
+	{
+		return activated;
 	}
 }
