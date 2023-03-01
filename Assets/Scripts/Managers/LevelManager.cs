@@ -18,16 +18,23 @@ public class LevelManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (firstSpikeTrigger.getActivatedFlag() == true && secondSpikeTrigger.gameObject.activeInHierarchy == false)
+		if (firstSpikeTrigger != null && firstSpikeTrigger.GetActivatedFlag() == true && secondSpikeTrigger.gameObject.activeInHierarchy == false)
 			SetUpSecondTrigger();
+		if(secondSpikeTrigger != null && secondSpikeTrigger.GetActivatedFlag() == true)
+		{
+			firstSpikeTrigger.gameObject.SetActive(false);
+			secondSpikeTrigger.gameObject.SetActive(false);
+		}
 	}
 	private void SetUpSecondTrigger()
 	{
 		Vector3 secondSpikeSpawnPosition = new Vector3(secondSpikeTrigger.gameObject.transform.position.x,
-			secondSpikeTrigger.gameObject.transform.position.y + .8f,
+			secondSpikeTrigger.gameObject.transform.position.y + .1f,
 			secondSpikeTrigger.gameObject.transform.position.z);
 
 		secondSpikeTrigger.SetSpikeSpawnPosition(secondSpikeSpawnPosition);
+
+		secondSpikeTrigger.SetSpawnTimer(1);
 
 		secondSpikeTrigger.gameObject.SetActive(true);
 	}

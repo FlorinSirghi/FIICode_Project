@@ -20,11 +20,4 @@ public class GameInput : MonoBehaviour
 
 		return movementVector;
 	}
-
-	public bool GetJumpingFlag()
-	{
-		bool flag = playerInputActions.Player.Jump.IsPressed();
-
-		return flag;
-	}
 }
