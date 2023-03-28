@@ -12,7 +12,6 @@ public class SecondTrampolineTrigger : MonoBehaviour
 	{
 		if(activated && player.IsGrounded())
 		{
-			Debug.Log("Caca");
 			Rigidbody2D rigidbody2D = player.gameObject.GetComponent<Rigidbody2D>();
 			Vector2 force = new Vector2(0, 100f);
 			rigidbody2D.AddForce(force, ForceMode2D.Impulse);
